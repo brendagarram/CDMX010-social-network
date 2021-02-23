@@ -1,46 +1,32 @@
-export const profilePage = `
-    <header>
-      <img class="chop"
-        src="https://user-images.githubusercontent.com/75234502/106777987-1d77dc80-660b-11eb-8d01-191b02855d50.png"
-      alt="">
-      <div class ="tittle">
-        <h1>¡Aprende, cocina y comparte!</h1>
-        <p>Únete a nuestra comunidad y comparte tus mejores recetas</p>
+export const profile = `
+  <header class= "profile-header">
+    <nav>
+      <div class = "header-nav-container">
+        <figure class="header-profile-nav_iconChop">
+          <img id = "header-profile_goToHome" src="https://user-images.githubusercontent.com/75234502/106777987-1d77dc80-660b-11eb-8d01-191b02855d50.png" alt="Chop icon">
+        </figure>
+        <figure class= "header-profile-nav_menuIcon-container">
+          <img class= "header-profile-nav_menuIcon" id="btn-menu" src="https://user-images.githubusercontent.com/75234502/108650846-1e6f9180-7486-11eb-96ff-7dfac71aec8e.png" alt="menu icon">
+        </figure>
       </div>
-      <img  id="picture" class="perfil" src="https://www.softzone.es/app/uploads/2018/04/guest.png" alt="">
-      <img id="btn-menu" class="menu" src="./icons/bars-solid.svg" alt="">
+    </nav>
+    <div class= "header-profile">
+      <figure class="header-profileImg">
+        <img id = "header-home_goToProfile" src="https://www.softzone.es/app/uploads/2018/04/guest.png" alt="profile-img">
+        <img class= "header-profile_editProfile" id="header-profile_editProfile" src="https://user-images.githubusercontent.com/75234502/108652185-2846c400-7489-11eb-9ef9-65e38e8e13fa.png" alt="">
+      </figure>
+      <h2 id="header-profileInfo_name">Nombre</h2>
+      <h3 id="header-profileInfo_email">Correo</h3>
+      <p>Descripción</p>
+    </div>
   </header>
-  <nav>
-    <img class="search" src="./icons/search-solid.svg" alt="">
-    <img class="home" id="home" src="./icons/home-solid.svg" alt="">
-    <img class="add" src="./icons/plus-circle-solid.svg" alt="">
-  </nav>
-  <div id="open" class="disable-menu-desplegable">
+  <div id="menu-open" class="disable-menu-desplegable-profile">
     <ul>
       <li id="profile"><a href= "#/profile/">Mi perfil</a></li>
-      <li><a href= "#/mypost/">Mis post</a></li>
-      <li><a href "#/favorites/">Favoritos</a></li>
-      <li class="signOut">Salir</li>
+      <li><a href= "#/">Home</a></li>
+      <li class="desplegableBtn_signOut" id="desplegableBtn_signOut"><a href= "">Salir</a></li>
     </ul>
   </div>
-  <section>
-    <article>
-      <div class = "user-info">
-        <figure>
-          <img class="profile-picture" id="imgProfile" src="">
-        </figure>
-        <h2 id="nameProfilePrinc"></h2>
-        <h3 id= "email-usuario" class= "email-usuario">eira</h3>
-        <p class = "about-me">yjyfjfjyfyf</p>
-        <button id="editProfile">Editar perfil</button>
-      </div>
-    </article>
-    <article>
-      <div class = "user-posts">
-        <h1> Mis posts</h1>
-      </div>
-    </article>
-  </section>
   <div class="homeWelcome-modal_container" id="homeWelcome-modal_container">
     <div class="homeWelcome-modal" id= "homeWelcome-modal">
       <figure class="close">
@@ -49,4 +35,4 @@ export const profilePage = `
       <img src="https://user-images.githubusercontent.com/75234502/106777987-1d77dc80-660b-11eb-8d01-191b02855d50.png" alt="ícono-Chop">
     <div class="homeWelcome-modal_msg" id="homeWelcome-modal_msg"></div>
   </div>
-</div>`
+</div>`;
