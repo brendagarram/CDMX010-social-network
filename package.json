@@ -12,8 +12,6 @@
   "scripts": {
     "htmlhint": "htmlhint dist/*.html ",
     "eslint": "eslint --ext .js src/ test/",
-    "eslint:fix": "eslint . --fix",
-    "eslint:check": "eslint .",
     "stylelint": "stylelint --aei src/**/*.css",
     "pretest": "npm run htmlhint && npm run eslint && npm run stylelint",
     "test": "jest --coverage",
@@ -36,8 +34,5 @@
   },
   "engines": {
     "node": ">=10"
-  },
-  "dependencies": {
-    "firebase": "^8.2.9"
   }
 }

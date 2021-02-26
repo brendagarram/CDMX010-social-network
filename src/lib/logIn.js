@@ -15,17 +15,19 @@ export const logIn = `
                 <div class= "homeWelcome-main-form-container">
                     <form action="#" onsubmit="return false" name="logInForm" class= "homeWelcome-main-form">
                         <label for="logInEmail">Escribe tu correo</label>
-                        <input type="email" name= "logInEmail" id= "logInEmail" placeholder= Email required>
-                        <label for="logInPassword">Escribe tu contraseña</label>
-                        <input type="password" name= "logInPassword" id= "logInPassword" placeholder= Password required>
-                        <p id="error-verificacion">No has verificado tu correo</p>
+                        <input type="email" name= "logInEmail" id= "logInEmail" placeholder= Email>
+                        <div class= "logInPassword_container">
+                            <label for="logInPassword">Escribe tu contraseña</label>
+                            <input type="password" name= "logInPassword" id= "logInPassword" placeholder= Password>
+                            <span class="passwordBtn-show"></span>
+                        </div>
                         <div class= "error-message_container" id="error-messageLogIn_container">
                             <figure>
                                 <img src="https://user-images.githubusercontent.com/75234502/108790177-a9619200-7541-11eb-85e1-09a9e72fc1ea.png" alt="warning-logo">
                             </figure>
                             <p id="error-messageLogIn"></p>
                         </div>
-                        <button class="signUpButton" id="logInButton" type= "submit" href="#/">Enviar</button>
+                        <button class="signUpButton" id="logInButton" type= "submit">Enviar</button>
                     </form>
                     <div class= "homeWelcome-main--icons-container">
                         <p>Acceder usando:</p>

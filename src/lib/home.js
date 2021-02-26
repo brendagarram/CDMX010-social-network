@@ -17,11 +17,12 @@ export const home = `
       </div>
     </nav>
   </header>
+  <div id= "home-post-container" class= 'home-post-container'>
+  </div>
   <div id="menu-open" class="disable-menu-desplegable">
     <ul>
-      <li id="profile"><a href= "#/profile/">Mi perfil</a></li>
-      <li><a href= "#/">Home</a></li>
-      <li class="desplegableBtn_signOut" id="desplegableBtn_signOut"><a href= "#">Salir</a></li>
+    <li id="aboutUs"><a href= "#/aboutUs/">Conócenos</a></li>
+      <li class="signOut" id="signOut"><a>Salir</a></li>
     </ul>
   </div>
   <div class="homeWelcome-modal_container" id="homeWelcome-modal_container">
@@ -30,6 +31,7 @@ export const home = `
         <img src= "https://user-images.githubusercontent.com/75234502/108016913-3acc8380-6fd9-11eb-84ba-297a450edb1f.png">
       </figure>
       <img src="https://user-images.githubusercontent.com/75234502/106777987-1d77dc80-660b-11eb-8d01-191b02855d50.png" alt="ícono-Chop">
-    <div class="homeWelcome-modal_msg" id="homeWelcome-modal_msg"></div>
+      <div class="homeWelcome-modal_msg" id="homeWelcome-modal_msg"></div>
+    </div>
   </div>
 `;

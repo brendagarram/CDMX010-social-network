@@ -16,18 +16,18 @@ export const signUp = `
                 <p> Únete ahora </p> <br>
                 <form action="#" onsubmit="return false" name="signUpForm" class= "homeWelcome-main-form">
                     <label for="userName">Escribe tu nombre</label>
-                    <input type="text" name="signUpName" id="userName" placeholder= Nombre de usuario required>
+                    <input type="text" name="signUpName" id="userName" placeholder= Nombre de usuario>
                     <label for="signUpEmail">Escribe tu correo</label>
-                    <input type="email" name= "signUpEmail" id= "signUpEmail" placeholder= Email required>
+                    <input type="email" name= "signUpEmail" id= "signUpEmail" placeholder= Email>
                     <div class= "signUpPassword-container">
                         <label for="signUpPassword">Escribe tu contraseña</label>
-                        <input type="password" name= "signUpPassword" id= "signUpPassword" placeholder= Password required>
-                        <span></span>
+                        <input type="password" name= "signUpPassword" id= "signUpPassword" placeholder= Password>
+                        <span class = "passwordBtn-show"></span>
                     </div>
                     <div class= "signUpPasswordConfirm-container">
                         <label for="signUpPasswordConfirm">Confirma tu contraseña</label>
-                        <input type="password" name= "signUpPasswordConfirm" id= "signUpPasswordConfirm" placeholder= Password required>
-                        <span></span>
+                        <input type="password" name= "signUpPasswordConfirm" id= "signUpPasswordConfirm" placeholder= Password>
+                        <span class = "passwordBtn-show"></span>
                     </div>
                     <div class= "error-message_container" id="error-message_container">
                         <figure>
@@ -35,7 +35,7 @@ export const signUp = `
                         </figure>
                         <p id="error-message"></p>
                     </div>
-                    <input class="signUpButton" id="signUpButton" type= "submit" href="#/">
+                    <button class="signUpButton" id="signUpButton" type= "submit">Enviar</button>
                 </form>
             </div>
         </div>

@@ -20,11 +20,20 @@ export const profile = `
       <p>Descripción</p>
     </div>
   </header>
+  <div id= "profile-post-container" class= 'profile-post-container'>
+  </div>
+  <main>
+    <div class= "main-createPost">
+      <figure>
+        <img src="https://user-images.githubusercontent.com/75234502/108946490-21a08400-7624-11eb-9d86-9dd366253da3.png" alt="">
+      </figure>
+      <input type="text" name= "createPost" id="createPost"  placeholder="¿Qué receta quieres compartir?">
+    </div>
+  </main>
   <div id="menu-open" class="disable-menu-desplegable-profile">
     <ul>
-      <li id="profile"><a href= "#/profile/">Mi perfil</a></li>
-      <li><a href= "#/">Home</a></li>
-      <li class="desplegableBtn_signOut" id="desplegableBtn_signOut"><a href= "">Salir</a></li>
+      <li id="profile"><a href= "#/aboutUs/">Conócenos</a></li>
+      <li class="signOut" id="signOut">Salir</li>
     </ul>
   </div>
   <div class="homeWelcome-modal_container" id="homeWelcome-modal_container">
@@ -33,6 +42,12 @@ export const profile = `
         <img src= "https://user-images.githubusercontent.com/75234502/108016913-3acc8380-6fd9-11eb-84ba-297a450edb1f.png">
       </figure>
       <img src="https://user-images.githubusercontent.com/75234502/106777987-1d77dc80-660b-11eb-8d01-191b02855d50.png" alt="ícono-Chop">
-    <div class="homeWelcome-modal_msg" id="homeWelcome-modal_msg"></div>
+      <div class="homeWelcome-modal_msg" id="homeWelcome-modal_msg">
+      </div>
+    </div>
   </div>
-</div>`;
+  <div class="postModal_container" id="postModal_container">
+    <div class= "postModalInfo" id= "postModalInfo">
+    </div>
+  </div>
+  `;

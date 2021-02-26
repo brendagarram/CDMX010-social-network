@@ -1,35 +1,62 @@
-## Proyecto
+# Creando una Red Social
 
-**Herramientas:** HTML, CSS, JavaScript, Firebase <br>
-Se busca crear una red social que permitirá a cualquier usuario crear una cuenta de acceso y loguearse con ella; crear, editar, borrar y "likear" publicaciones.
+## Índice
 
-A raíz de la reciente pandemia pudimos observar un incremento en redes sociales de personas que se vieron en la necesidad de empezar a cocinar en casa y subían fotos de sus platillos en redes sociales. **Chop** nació con el propósito de que cualquier persona que esté descubriendo este increíble mundo de la gastronomía casera pueda subir orgullosamente los platillos que ha preparado y pueda compartir con otros usuarios las recetas para que estos también experimenten sus increíbles sabores! Nunca te quedarás sin ideas de qué cocinar, pues con **Chop** tendrás un mundo de posibilidades y podrás interactuar con otras personas que también estén descubriendo este maravilloso mundo
+* [1. Preámbulo](#1-preámbulo)
+* [2. Resumen del proyecto](#2-resumen-del-proyecto)
+* [3. Objetivos de aprendizaje](#3-objetivos-de-aprendizaje)
+* [4. Consideraciones generales](#4-consideraciones-generales)
+* [5. Criterios de aceptación mínimos del proyecto](#5-criterios-de-aceptación-mínimos-del-proyecto)
+* [6. Hacker edition](#6-hacker-edition)
+* [7. Entrega](#7-entrega)
+* [8. Pistas, tips y lecturas complementarias](#8-pistas-tips-y-lecturas-complementarias)
 
-## Usuario Objetivo
+## 1. Preámbulo
 
-Nuestra app está diseñada para todas aquellas personas amantes de la cocina y con alma de cheffs. Para todos aquellos que transforman su cocina en un laboratorio en donde experimentar y crear delicias con nuevos sabores. No se necesita ser un experto para ser parte de la comunidad, pues aquí se pueden compartir recetas, tips y los secretos culinarios más sofisticados (los de la abuela también cuentan).Para el diseño y experiencia de la app, pensamos en un User persona:
+Instagram, Snapchat, Twitter, Facebook, Twitch, Linkedin, etc. Las redes
+sociales han invadido nuestras vidas. Las amamos u odiamos, y muchos no podemos
+vivir sin ellas.
 
-![enter image description here](https://github.com/LinnetteVazquez/imagenes/blob/master/userPersona.jpg?raw=true)
+Hay redes sociales de todo tipo y para todo tipo de intereses. Por ejemplo,
+en una ronda de financiamiento con inversionistas, se presentó una red social
+para químicos en la que los usuarios podían publicar artículos sobre sus
+investigaciones, comentar en los artículos de sus colegas, y filtrar artículos
+de acuerdo a determinadas etiquetas o su popularidad, lo más reciente, o lo
+más comentado.
 
-## 3. Historias de usuario
+## 2. Resumen del proyecto
 
-**Primera historia de Usuario**
+En este proyecto construirás una Red Social sobre lo que decidan tú y tu equipo.
+Podría ser, por ejemplo, sobre alimentación saludable, feminismo, educación,
+salud, energías renovables, amantes de las [Empanadas](https://es.wikipedia.org/wiki/Empanada)
+o de los [Tacos de Canasta](https://es.wikipedia.org/wiki/Taco), de la
+[Feijoada](https://es.wikipedia.org/wiki/Feijoada), o de lo que sea.
 
-- Yo como usuario quiero poder crear una cuenta para poder acceder a la app.
+Tu Red Social tendrá que permitir a cualquier usuario crear una cuenta de
+acceso y loguearse con ella; crear, editar, borrar y _"likear"_ publicacciones.
 
-| Criterios de Aceptaciòn   | **Definición de terminado** |
-| ------------------------- | --------------------------- |
-| Maquetacion de HTML y CSS | Responsive                  |
+## 3. Objetivos de aprendizaje
 
-## 4. Prototipo de baja fidelidad
+El objetivo principal de aprendizaje de este proyecto es construir una
+[Single-page Application (SPA)](https://es.wikipedia.org/wiki/Single-page_application)
+[_responsive_](../../topics/css/02-responsive) (con más de una vista / página)
+en la que podamos **leer y escribir datos.**
 
-Los bocetos creados son específicamente de la primera pantalla, ya que definimos la primera historia de usuario respecto a esta. Por lo que mostramos los primeros prototipos tanto de Desktop como Mobile.
+### HTML y CSS
 
-- Vista de la primera pantalla en desktop
+* [ ] [Uso de HTML semántico.](https://developer.mozilla.org/en-US/docs/Glossary/Semantics#Semantics_in_HTML)
+* [ ] Uso de selectores de CSS.
+* [ ] Construir tu aplicación respetando el diseño realizado (maquetación).
+* [ ] [Uso de flexbox en CSS.](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)
 
-![vista de la pantalla en Desktop](https://github.com/LinnetteVazquez/imagenes/blob/master/desktopPrototype.jpg?raw=true)
+### DOM y Web APIs
 
-- Podemos observar el boceto de la primera pantalla en mobile, donde el usuario podra entrar a la app.
+* [ ] Uso de selectores del DOM.
+* [ ] Manejo de eventos del DOM.
+* [ ] [Manipulación dinámica del DOM.](https://developer.mozilla.org/es/docs/Referencia_DOM_de_Gecko/Introducci%C3%B3n)
+(appendChild |createElement | createTextNode| innerHTML | textContent | etc.)
+* [ ] [History API.](https://developer.mozilla.org/es/docs/DOM/Manipulando_el_historial_del_navegador)
+* [ ] [localStorage.](https://developer.mozilla.org/es/docs/Web/API/Window/localStorage)
 
 ### JavaScript
 

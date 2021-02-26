@@ -87,12 +87,12 @@
   background-color: var(--dark-green);
 }
 
-.signUpPassword-container span, .signUpPasswordConfirm-container span {
+.signUpPassword-container .passwordBtn-show, .signUpPasswordConfirm-container .passwordBtn-show, .logInPassword_container .passwordBtn-show, .signUpPassword-container .passwordBtn-hide, .signUpPasswordConfirm-container .passwordBtn-hide, .logInPassword_container .passwordBtn-hide {
   top: 27px;
   background-image: url('https://user-images.githubusercontent.com/75234502/108805060-ad52db80-7564-11eb-83f6-bd51e3593d08.png');
 }
 
-.signUpPassword-container .hide, .signUpPasswordConfirm-container .hide {
+.signUpPassword-container .passwordBtn-hide, .signUpPasswordConfirm-container .passwordBtn-hide, .logInPassword_container .passwordBtn-hide {
   background-image: url('https://user-images.githubusercontent.com/75234502/108806806-5818c900-7568-11eb-8a45-639875a85416.png');
 }
 
@@ -227,7 +227,7 @@
 .header-profile-nav_menuIcon {
   width: 50px;
   height: 50px;
-  /*margin: 30px;*/
+  margin: 45px;
   margin-left: 20px;
 }
 
@@ -253,3 +253,18 @@
   top: 70px;
 }
 
+.home-post-container {
+  top: 250px;
+}
+
+.postHome-container {
+  max-width: 500px;
+}
+
+.profile-post-container {
+  top: 700px;
+}
+
+.main-createPost {
+  top: 70%;
+}
