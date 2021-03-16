@@ -32,7 +32,7 @@ export const logIn = `
                     <div class= "homeWelcome-main--icons-container">
                         <p>Acceder usando:</p>
                         <figure>
-                          <img class="logInFacebook" id="logInFacebook" src="https://user-images.githubusercontent.com/75234502/108005792-4b700000-6fbf-11eb-95d4-a1a9a07f45a6.png" alt="ícono Facebook">
+                            <img class="logInFacebook" id="logInFacebook" src="https://user-images.githubusercontent.com/75234502/108005792-4b700000-6fbf-11eb-95d4-a1a9a07f45a6.png" alt="ícono Facebook">
                         </figure>
                         <figure>
                             <img class= "logInGithub" id="logInGithub" src="https://user-images.githubusercontent.com/75234502/107734014-09df0c80-6cc2-11eb-8450-d9511e3d2e2e.png" alt="ícono GitHub">
@@ -42,7 +42,7 @@ export const logIn = `
                         </figure>
                     </div>
                     <p class= "homeWelcome-main--invitation">¿No eres miembro todavía?</p>
-                    <a href="#/signup/" class= "homeWelcome-main--signUp" id= "logIn">Regístrate aquí</a>
+                    <a href='#/signup/' class= "homeWelcome-main--signUp" id= "homeWelcome-main--signUp">Regístrate aquí</a>
                 </div>
             </div>
         </div>

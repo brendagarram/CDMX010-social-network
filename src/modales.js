@@ -11,7 +11,7 @@ export const noVerification = `
 
 export const signOutConfirmation = `
 <div class="modal-msg">
-  <p>¿Seguro que deseas salir</p>
+  <p>¿Seguro que deseas salir?</p>
     <div class="button-container">
     <button id= "yesSignOut">Sí</button>
     <button id= "no">No</button>
@@ -34,17 +34,79 @@ export const editProfileModal = `
 </div>
 `;
 
-export const postModal = `
+export const deleteConfirmation = `
+<div class="modal-msg">
+  <p>¿Seguro que deseas borrar este post?</p>
+    <div class="button-container">
+    <button id= "yesDelete">Sí</button>
+    <button id= "noDelete">No</button>
+    </div>
+</div>`;
+
+export const postModal = (img, name) => {
+  const postModalTemplate = `
+  <div class= 'post'>
+    <div class= 'userInfoPost'>
+      <img src="${img}" alt="">
+      <p>${name}</p>
+      <figure class="close">
+        <img src= "https://user-images.githubusercontent.com/75234502/108016913-3acc8380-6fd9-11eb-84ba-297a450edb1f.png">
+      </figure>
+    </div>
+    <div class= 'post_recipie'>
+      <figure>
+        <img  class= "imgLoadPost" id= "imgLoadPost" src="" alt="Image preview...">
+      </figure>
+      <form action="#" onsubmit="return false">
+        <input name="postImg" type="file" id="imgFile" accept="image/*" class="input-file">
+        <textarea name="post" rows="10" cols="40" id= "postText" required></textarea>
+        <button type= "submit" id= 'btnCreatePost'>Enviar</button>
+      </form>
+    </div>
+  </div>`;
+  return postModalTemplate;
+};
+
+export const editPostModal = (photo, name, post) => {
+  const editPostModalTemplate = `
 <div class= 'post'>
   <div class= 'userInfoPost'>
-    <img src="" alt="">
-    <p></p>
+    <img src="${photo}" alt="">
+    <p>${name}</p>
     <figure class="close">
       <img src= "https://user-images.githubusercontent.com/75234502/108016913-3acc8380-6fd9-11eb-84ba-297a450edb1f.png">
     </figure>
   </div>
   <div class= 'post_recipie'>
-    <textarea name="post" rows="10" cols="40" id= "postText"></textarea>
+    <figure>
+      <img  class= "imgLoadPost" id= "imgLoadPostEdit" src="" alt="Image preview...">
+    </figure>
+    <form action="#" onsubmit="return false">
+      <input name="postImg" type="file" id="imgFileEdit" accept="image/*" class="input-file">
+      <textarea name="post" rows="10" cols="40" id= "postTextEdit" placeholder= 'Edita tu post' required>${post}</textarea>
+      <button type= "submit" id= 'btnEditPost'>Enviar</button>
+    </form>
   </div>
-  <button id= 'btnCreatePost'>Enviar</button>
 </div>`;
+  return editPostModalTemplate;
+};
+
+export const addComment = (photo, name) => {
+  const editPostModalTempl = `
+  <div class= 'post'>
+    <div class= 'userInfoPost'>
+      <img src="${photo}" alt="">
+      <p>${name}</p>
+      <figure class="close">
+        <img src= "https://user-images.githubusercontent.com/75234502/108016913-3acc8380-6fd9-11eb-84ba-297a450edb1f.png">
+      </figure>
+    </div>
+    <div class= 'post_recipie'>
+      <form action="#" onsubmit="return false">
+        <textarea name="post" rows="10" cols="40" id= "postCommentText" placeholder= 'Agrega un comentario' required></textarea>
+        <button type= "submit" id= 'btnAddComment'>Enviar</button>
+      </form>
+    </div>
+  </div>`;
+  return editPostModalTempl;
+};

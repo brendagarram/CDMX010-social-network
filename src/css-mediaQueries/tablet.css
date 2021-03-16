@@ -1,0 +1,320 @@
+:root {
+  --purple: #897678;
+  --light-purple: #cec1c3;
+  --green: #94aa6b;
+  --light-green: #9cae79;
+  --dark-green: #8e9561;
+  --orange: #f1a545;
+}
+
+.homeWelcome-info-container {
+  background-position: 50%;
+  transform: scaleX(-1);
+}
+
+.homeWelcome-info-container--background {
+  flex-direction: row;
+  transform: scaleX(-1);
+  background-color: rgba(142, 149, 97, 0.5);
+}
+
+.homeWelcome-main-container button a {
+  font-size: 2rem;
+}
+
+.homeWelcome-header-container {
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+  height: 920px;
+}
+
+.homeWelcome-header-container .homeWelcome-header_slogan {
+  font-size: 5rem;
+  margin: 10%;
+}
+
+.homeWelcome-header-container .homeWelcome-header_invitation {
+  /*position: absolute;
+    bottom: 10%;
+    left: 1%;*/
+  font-size: 3rem;
+  justify-self: flex-end;
+  font-size: 3rem;
+}
+
+.homeWelcome-header-container .homeWelcome-header-container_chop {
+  display: none;
+}
+
+.homeWelcome-main-container,
+.homeWelcome-main-signUp-container {
+  background-color: var(--green);
+  width: 80%;
+  height: 850px;
+  margin: 2%;
+  padding: 5%;
+  border-radius: 0px;
+  border: var(--green) 10px solid;
+  box-shadow: inset 0 0 0 5px var(--dark-green);
+}
+
+.homeWelcome-main-container .homeWelcome-main-container_chop {
+  display: block;
+}
+
+.homeWelcome-main-container .homeWelcome-main-container_chop img {
+  max-width: 200px;
+  margin-bottom: 50px;
+}
+
+.homeWelcome-main-form-container {
+  width: 100%;
+  height: 60%;
+}
+
+.homeWelcome-main-container form {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  align-items: center;
+}
+
+.homeWelcome-main-container input {
+  width: 300px;
+  height: 30px;
+  border-radius: 5px;
+  background-color: var(--dark-green);
+}
+
+.signUpPassword-container .passwordBtn-show, .signUpPasswordConfirm-container .passwordBtn-show, .logInPassword_container .passwordBtn-show, .signUpPassword-container .passwordBtn-hide, .signUpPasswordConfirm-container .passwordBtn-hide, .logInPassword_container .passwordBtn-hide {
+  top: 27px;
+  background-image: url('https://user-images.githubusercontent.com/75234502/108805060-ad52db80-7564-11eb-83f6-bd51e3593d08.png');
+}
+
+.signUpPassword-container .passwordBtn-hide, .signUpPasswordConfirm-container .passwordBtn-hide, .logInPassword_container .passwordBtn-hide {
+  background-image: url('https://user-images.githubusercontent.com/75234502/108806806-5818c900-7568-11eb-8a45-639875a85416.png');
+}
+
+.homeWelcome-main-container button {
+  background-color: var(--orange);
+  width: 150px;
+  height: 40px;
+}
+
+.homeWelcome-main-container label,
+.homeWelcome-main-container p {
+  font-size: 2rem;
+  margin: 3%;
+}
+
+.homeWelcome-main-container a {
+  text-decoration: none;
+  font-size: 1.8rem;
+}
+
+.homeWelcome-main-container .homeWelcome-main--icons-container {
+  display: flex;
+  justify-self: start;
+  width: 40%;
+  min-width: 200px;
+  border: none;
+  box-shadow: none;
+  margin-bottom: 50px;
+}
+
+.homeWelcome-main-container .homeWelcome-main--icons-container img {
+  width: 30px;
+}
+
+.homeWelcome-main--signUp {
+  margin: 20px;
+  font-size: 2rem;
+}
+
+.homeWelcome-main-form .signUpButton {
+  background-color: var(--orange);
+  font-size: 2rem;
+}
+
+.homeWelcome-main-container .homeWelcome-main--invitation {
+  font-size: 2rem;
+}
+
+.homeWelcome-main--icons-container {
+  width: 50%;
+  margin: 3%;
+}
+
+.homeWelcome-main--icons-container p {
+  font-size: 2rem;
+  margin: 6%;
+}
+
+.homeWelcome-main--icons-container a img {
+  width: 40px;
+}
+
+.error-message_container p {
+  width: 80%;
+  margin: 10px;
+}
+
+.error-message_container figure {
+  width: 30px;
+  height: 30px;
+}
+
+/*Home*/
+.home-header {
+  height: 230px;
+}
+
+.header-nav_container {
+  width: 250px;
+}
+
+.header-nav_iconChop, .header-nav_profileImg {
+  width: 80px;
+  height: 80px;
+}
+
+.header-nav_iconChop, .header-profile-nav_iconChop {
+  width: 120px;
+  height: 120px;
+  margin: 0 40px;
+}
+
+.header-nav_menuIcon-container {
+  align-self: flex-start;
+  margin-top: 15px;
+  width: 50px;
+  height: 50px;
+}
+ /*Profile*/
+
+.profile-header {
+  height: 30%;
+}
+
+.header-profile {
+  top: 60%;
+}
+
+.header_profileInfo_container {
+  display: flex;
+  flex-direction: column;
+  height: 120px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header_profileInfo_container p {
+  display: block;
+  text-align: center;
+  font-family: 'Cookie', cursive;
+  font-size: 3rem;
+}
+
+.header-nav_container {
+  margin: 0 50px;
+}
+
+.header-profile-nav_iconChop {
+  align-self: flex-start;
+}
+
+.header-profile-nav_menuIcon {
+  width: 50px;
+  height: 50px;
+  margin: 45px;
+  margin-left: 20px;
+}
+
+.header-profileImg {
+  top: 40%;
+  width: 250px;
+  height: 250px;
+  margin-left: 60px;
+}
+
+.header-profileImg img {
+  width: 80%;
+  height: 80%;
+}
+
+.enable-menu-desplegable, .enable-menu-desplegable-favorite {
+  display: block;
+  position: absolute;
+  right: 10px;
+  top: 120px;
+  flex-direction: column;
+  align-content: center;
+  max-width: 35%;
+  width: 150px;
+  height: 200px;
+}
+
+.enable-menu-desplegable-profile, .enable-menu-desplegable-favorite {
+  top: 85px;
+  right: 30px;
+}
+
+.enable-menu-desplegable-favorite {
+  top: 130px;
+}
+
+.home-post-container {
+  top: 250px;
+}
+
+.postHome-container {
+  max-width: 500px;
+}
+
+.profile-post-container {
+  top: 700px;
+}
+
+/*.main-createPost {
+  top: 75%;
+}
+
+/*Post*/
+.postHome-container {
+  width: 90%;
+  height: auto;/*280px;*/
+  background-color: /*rgb(255, 255, 255)*/#F4F4F4;
+  flex-wrap: wrap;
+  margin: 20px;
+  box-shadow: 3px 3px 3px 3px rgba(0, 0, 0, 0.2);
+}
+
+/*Modal*/
+.postModalInfo {
+  width: 600px;
+  height: 500px;
+  border-radius: 5px;
+}
+
+.post textarea {
+  width: 100%;
+  height: 80%;
+  border: none;
+  box-shadow: 3px 3px 4px 1px rgba(0, 0, 0, 0.2);
+}
+
+.post_recipie form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.post_recipie input {
+  width: 70%;
+  align-self: center;
+}
+
+.favoriteMsg-container {
+  top: 0%;
+}

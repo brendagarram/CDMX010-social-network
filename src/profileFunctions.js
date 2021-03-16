@@ -1,79 +1,91 @@
 import { showModals } from './showModals.js';
-import { editProfileModal } from './modales.js'
+import { editProfileModal } from './modales.js';
+import {
+  currentUserConf, storageRef, putImgStorage, upDateUser, getDownloadURL,
+} from './userFireBase.js';
+import { previewImg } from './others.js';
 //  Info perfil
 export const getUserData = () => {
   const userImage = document.getElementById('header-home_goToProfile');
   const userName = document.getElementById('header-profileInfo_name');
   firebase.auth().onAuthStateChanged((user) => {
     if (user) {
-      var user = firebase.auth().currentUser;
-      let photo = user.photoURL;
-      let name = user.displayName;
-      let email = user.email;
-      console.log(photo);
+      let photo;
+      if (user.photoURL === null) {
+        photo = 'https://www.softzone.es/app/uploads/2018/04/guest.png';
+      } else {
+        photo = user.photoURL;
+      }
+      upDateUser(user, {
+        name: user.displayName,
+        img: photo,
+        email: user.email,
+      });
+      const name = user.displayName;
+      const email = user.email;
       userName.textContent = name;
       if (window.location.hash === '#/profile/') {
         const userEmailContainer = document.getElementById('header-profileInfo_email');
         userEmailContainer.textContent = email;
-      };
-      if(photo != null) {
-        userImage.src = photo;
-      } else {
-        userImage.src = 'https://user-images.githubusercontent.com/75234502/108898773-3c033f00-75dd-11eb-9af9-8cfdffcff204.png';
       }
+      userImage.src = photo;
     }
   });
 };
 
+// Actualizar perfil
+const updateProfile = (img, names, user) => {
+  //  Referencia a la carpeta en el storage de firebase(carpeta y nombre del archivo)
+  const storageReference = storageRef('/userProfileImgs/', user.uid);
+  putImgStorage(storageReference, img)
+    .then(() => {
+      getDownloadURL(storageReference)
+        .then((result) => {
+          upDateUser(user, {
+            name: names,
+            img: result,
+          }).then(() => {
+            const imgProf = document.getElementById('header-home_goToProfile');
+            imgProf.src = result;
+            const nameDiv = document.getElementById('header-profileInfo_name');
+            const nameUser = user.displayName;
+            nameDiv.textContent = nameUser;
+            const close = document.getElementsByClassName('close')[0];
+            close.onclick();
+            window.location.reload();
+          }).catch((error) => {
+            console.log(error);
+            console.log('No actualización');
+          });
+        })
+        .catch((error) => {
+          console.log(error);
+          console.log('No url');
+        });
+    })
+    .catch((error) => {
+      console.log(error);
+      console.log('No se subió img');
+    });
+};
+
 //  Editar perfil
 export const editProfile = () => {
-  let imgURL;
   const editBtn = document.getElementById('header-profile_editProfile');
   editBtn.addEventListener('click', () => {
     showModals(editProfileModal);
-    let user = firebase.auth().currentUser;
+    const user = currentUserConf();
     const buttonEdit = document.getElementById('saveEdit');
-    let file = document.getElementById('file');
-    file.addEventListener('change', () => {
-      let imgFile = document.getElementById("file").files[0];
-      const previewImg = document.getElementById('imgLoad');
-      imgURL = URL.createObjectURL(imgFile);
-      previewImg.src = imgURL;
-      });
+    previewImg('file', 'imgLoad');
     buttonEdit.addEventListener('click', () => {
       let nameProfile = document.getElementById('nameProfInput').value;
-      let imgFile = document.getElementById("file").files[0];
+      const imgFile = document.getElementById('file').files[0];
       if (nameProfile === '') {
         nameProfile = user.displayName;
-        console.log('Igual')
-      } else if (nameProfile != ''){
+      } else if (nameProfile !== '') {
         nameProfile = nameProfile;
       }
-      updateProfile(imgFile, nameProfile, imgURL);
-      })
-  })
-}
-
-// Actualizar perfil
-const updateProfile = (img, name) => {
-  let storageRef = storage.ref('/userProfileImgs/' + img.name);
-  storageRef.put(img).then (function(snapshot) {
-    storageRef.getDownloadURL().then(function (url) {
-      let user = auth.currentUser;
-      user.updateProfile({
-        photoURL: url,
-        displayName: name,
-      }).then(function(result) {
-        let imgProf = document.getElementById('header-home_goToProfile');
-        imgProf.src = img;
-        let nameDiv = document.getElementById('header-profileInfo_name');
-        let name = user.displayName;
-        nameDiv.textContent = name;
-        const close = document.getElementsByClassName("close")[0];
-        close.onclick();
-        window.location.reload();
-      }).catch(function(error) {
-      });
+      updateProfile(imgFile, nameProfile, user);
     });
-  })
+  });
 };

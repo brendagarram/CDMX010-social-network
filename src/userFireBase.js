@@ -1,142 +1,112 @@
-import { router } from './main.js';
-import { showModals } from "./showModals.js";
-import { welcomeMsg, noVerification } from "./modales.js";
-
-export const createUser = (email, password, name) => {
-  let errorMessageContainer = document.getElementById('error-message_container');
-  let errorMessage = document.getElementById('error-message');
-  firebase.auth().createUserWithEmailAndPassword(email, password)
-    .then((result) => {
-      //    Esto actualiza el nombre del usuario
-      result.user.updateProfile({
-          displayName: name
-      })
-      // url para redireccionar a nuestra página
-      const config = {
-        url: 'http://localhost:5000/',
-      };
-        //  enviar un mensaje de verificación al usuario y redireccionarlo a nuestra página
-      result.user.sendEmailVerification(config)
-        .then(() => {
-          showModals(welcomeMsg);
-        })
-        .catch((error) => {
-          console.log(error);
-          errorMessage.textContent = error.message;
-        });
-    })
-    .catch((error) => {
-      errorMessageContainer.style.visibility = 'visible';
-      if (error.code === 'auth/email-already-in-use') {
-        errorMessage.textContent = 'Oh, oh, este correo ya existe, intenta con otro'
-      } else if (error.code === 'auth/weak-password') {
-        errorMessage.textContent = 'Tu contraseña debe contener al menos 6 caracteres'
-      } else {
-        errorMessage.textContent = error.message;
-      }
-    });
-};
-
-export const logInEmailPass = (email, password) => {
-  let errorMessageContainerLogIn = document.getElementById('error-messageLogIn_container');
-  let errorMessageLogIn = document.getElementById('error-messageLogIn');
-  firebase.auth().signInWithEmailAndPassword(email, password)
-    .then((result) => {
-      //  evaluar si validó su correo
-      if (result.user.emailVerified) {
-        //  comprobar que está logueado antes de ir al home
-        firebase.auth().onAuthStateChanged((user) => {
-          if (user) {
-          window.location.hash = '#/';
-          console.log('usuario logueado');
-          }
-        })
-      } else {
-        showModals(noVerification);
-        //  para que no esté logueado aunque los datos sean correctos
-        firebase.auth().signOut();
-      }
-    })
-    .catch((error) => {
-      console.log(error);
-      errorMessageContainerLogIn.style.visibility = 'visible';
-      const showError = () => {
-        setTimeout(function(){errorMessageContainerLogIn.style.visibility = 'hidden'}, 3000);
-      }
-      if (error.code === 'auth/user-not-found') {
-        errorMessageLogIn.textContent = 'Algo ha salido mal, tu usuario no ha sido encontrado. Verifica tu correo.';
-        showError();
-      }
-      if (error.code === 'auth/wrong-password') {
-        errorMessageLogIn.textContent = '¡Ups! Contraseña incorrecta. Revísala una vez más.';
-        showError();
-        }
-    });
-};
-
-
+//  Autenticación con proveedor
 export const authGitHub = () => {
-  let errorMessageContainerLogIn = document.getElementById('error-messageLogIn_container');
-  let errorMessageLogIn = document.getElementById('error-messageLogIn');
   const provider = new firebase.auth.GithubAuthProvider();
-  firebase.auth().signInWithPopup(provider)
-    .then(() => {
-      window.location.hash = '#/';
-    }).catch((error) => {
-      errorMessageContainerLogIn.style.visibility = 'visible';
-      kindOfError(error, errorMessageLogIn);
-    });
+  const resultGitHub = firebase.auth().signInWithPopup(provider);
+  return (resultGitHub);
 };
 
 export const authGoogle = () => {
-  let errorMessageContainerLogIn = document.getElementById('error-messageLogIn_container');
-  let errorMessageLogIn = document.getElementById('error-messageLogIn');
   const provider = new firebase.auth.GoogleAuthProvider();
-  firebase.auth().signInWithPopup(provider)
-    .then(() => {
-      let user = firebase.auth().currentUser;
-      window.location.hash = '#/';
-      console.log(user);
-  }).catch((error) => {
-    console.log(error);
-      errorMessageContainerLogIn.style.visibility = 'visible';
-      kindOfError(error, errorMessageLogIn);
-    });
+  const resultGoogle = firebase.auth().signInWithPopup(provider);
+  return (resultGoogle);
 };
 
 export const authFacebook = () => {
-  let errorMessageContainerLogIn = document.getElementById('error-messageLogIn_container');
-  let errorMessageLogIn = document.getElementById('error-messageLogIn');
   const provider = new firebase.auth.FacebookAuthProvider();
-  firebase.auth().signInWithPopup(provider)
-    .then(() => {
-      window.location.hash = '#/';
-    }).catch((error) => {
-      errorMessageContainerLogIn.style.visibility = 'visible';
-      kindOfError(error, errorMessageLogIn);
-    });
+  const resultFacebook = firebase.auth().signInWithPopup(provider);
+  return (resultFacebook);
 };
 
-const kindOfError = (error, containerError) => {
-  if (error.code === 'auth/account-exists-with-different-credential') {
-    containerError.textContent = 'Algo ha salido mal, parece que has registrado este correo antes';
-  }
-};
+//  Autenticación email y password
+export const logInEmailPass = (
+  email, password,
+) => firebase.auth().signInWithEmailAndPassword(email, password);
 
-export const signOutFire = () => {
-  firebase.auth().onAuthStateChanged((user) => {
-    if (user) {
-      firebase.auth().signOut()
-      .then(() => {
-      window.location.replace('http://localhost:5000');
-    })
-      .catch((error) => {
-      console.log(error);
-    })
-    } else {
-      // alert('Vuelve a iniciar sesión');
-    }
+//  Crear usuario
+export const createUser = (email,
+  password) => firebase.auth().createUserWithEmailAndPassword(email, password);
+
+//  Actualizar usuario
+export const upDateUser = (user, { name, img, emailUser }) => {
+  const newName = user.updateProfile({
+    displayName: name,
+    photoURL: img,
+    email: emailUser,
   });
+  return newName;
 };
 
+//  Enviar verificación por email
+export const emailVerification = (user) => {
+  const config = {
+    url: 'http://localhost:5000/',
+  };
+  const emailVer = user.sendEmailVerification(config);
+  return emailVer;
+};
 
+//  Verificar el usuario actual
+export const currentUserConf = () => {
+  const user = firebase.auth().currentUser;
+  return user;
+};
+
+//  Confirmación de la verificación de usuario
+export const emailVerified = (user) => {
+  const emailVer = user.emailVerified;
+  return emailVer;
+};
+
+//  Salir de la app
+export const signOutFire = () => firebase.auth().signOut();
+
+//  Perfil
+//  Crear una referecia de firebase Storage
+export const storageRef = (path, uid) => firebase.storage().ref(path + uid);
+//  Crear una referecia de firebase Storage
+//  export const storageRef = (path, img) => firebase.storage().ref(path + img.name);
+//  Subir la imagen a esa referencia
+export const putImgStorage = (reference, img) => reference.put(img);
+
+//  Traer Url de la imagen
+export const getDownloadURL = (reference) => reference.getDownloadURL();
+//  Post
+//  Crear una colección en firebase con los datos del post
+export const postInfoPost = (uid, photo, usermail, name, post, tasteLikes,
+  cookLikes, comments, userCommentPhoto, imgTasteLike,
+  imgTasteNoLike, imgCookLike, imgCookNoLike, imgPost,
+  date, dateMs, collectionName) => firebase.firestore().collection(collectionName).add({
+  uid,
+  photo,
+  usermail,
+  name,
+  post,
+  tasteLikes,
+  cookLikes,
+  comments,
+  userCommentPhoto,
+  imgTasteLike,
+  imgTasteNoLike,
+  imgCookLike,
+  imgCookNoLike,
+  imgPost,
+  date,
+  dateMs,
+});
+
+//  Guardar información del post
+export const postData = (userUid, postId) => firebase.firestore().collection(userUid).add({
+  postId,
+});
+
+//  Se hace una "captura" /snpashot/ de los contenidos de la colección hasta ese momento.
+//  Ejecuta una función que se llama a sí misma
+export const getPostInfo = (callbackFunction,
+  collectionName) => firebase.firestore().collection(collectionName).orderBy('dateMs',
+  'desc').onSnapshot(callbackFunction); //  onSnapshot es un controlador de instantáneas
+
+//  Obtener el id de un post
+export const getPost = (postId) => firebase.firestore().collection('posts').doc(postId).get();
+
+//  Borrar post
+export const deletePostFire = (postId) => firebase.firestore().collection('posts').doc(postId).delete();

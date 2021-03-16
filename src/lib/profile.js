@@ -3,10 +3,10 @@ export const profile = `
     <nav>
       <div class = "header-nav-container">
         <figure class="header-profile-nav_iconChop">
-          <img id = "header-profile_goToHome" src="https://user-images.githubusercontent.com/75234502/106777987-1d77dc80-660b-11eb-8d01-191b02855d50.png" alt="Chop icon">
+          <acronym title="Home"><img id = "header-profile_goToHome" src="https://user-images.githubusercontent.com/75234502/106777987-1d77dc80-660b-11eb-8d01-191b02855d50.png" alt="Chop icon"><acronym>
         </figure>
         <figure class= "header-profile-nav_menuIcon-container">
-          <img class= "header-profile-nav_menuIcon" id="btn-menu" src="https://user-images.githubusercontent.com/75234502/108650846-1e6f9180-7486-11eb-96ff-7dfac71aec8e.png" alt="menu icon">
+          <acronym title="Menú"><img class= "header-profile-nav_menuIcon" id="btn-menu" src="https://user-images.githubusercontent.com/75234502/108650846-1e6f9180-7486-11eb-96ff-7dfac71aec8e.png" alt="menu icon"><acronym>
         </figure>
       </div>
     </nav>
@@ -18,21 +18,22 @@ export const profile = `
       <h2 id="header-profileInfo_name">Nombre</h2>
       <h3 id="header-profileInfo_email">Correo</h3>
       <p>Descripción</p>
+      <div class= "main-createPost">
+        <figure>
+          <img src="https://user-images.githubusercontent.com/75234502/108946490-21a08400-7624-11eb-9d86-9dd366253da3.png" alt="">
+        </figure>
+        <input type="text" name= "createPost" id="createPost"  placeholder="¿Qué receta quieres compartir?">
+      </div>
     </div>
   </header>
-  <div id= "profile-post-container" class= 'profile-post-container'>
-  </div>
   <main>
-    <div class= "main-createPost">
-      <figure>
-        <img src="https://user-images.githubusercontent.com/75234502/108946490-21a08400-7624-11eb-9d86-9dd366253da3.png" alt="">
-      </figure>
-      <input type="text" name= "createPost" id="createPost"  placeholder="¿Qué receta quieres compartir?">
+    <div id= "profile-post-container" class= 'profile-post-container'>
     </div>
   </main>
   <div id="menu-open" class="disable-menu-desplegable-profile">
     <ul>
       <li id="profile"><a href= "#/aboutUs/">Conócenos</a></li>
+      <li id="myFavorites"><a href= "#/favoritePost/">Favoritos</a></li>
       <li class="signOut" id="signOut">Salir</li>
     </ul>
   </div>

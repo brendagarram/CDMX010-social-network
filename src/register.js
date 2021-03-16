@@ -1,97 +1,105 @@
-import { createUser, logInEmailPass } from './userFireBase.js';
-import { infoValidationLogIn, infoValidationSignIn, emailPassVal } from './validation.js'
-import { signOutConfirmation } from './modales.js'
-import { showModals } from './showModals.js'
-//  Autenticación con un proveedor
-//  Github, Google, Facebook
-export const logInProvider = (element, logInWithProvider) => {
-  const logInBtnProvider = document.getElementById(element);
-  logInBtnProvider.addEventListener('click', logInWithProvider);
-}
+import {
+  createUser, logInEmailPass, upDateUser, emailVerification,
+  emailVerified, signOutFire, postData, currentUserConf,
+} from './userFireBase.js';
+import { showError } from './others.js';
+import { welcomeMsg, noVerification } from './modales.js';
+import { infoValidation } from './validation.js';
+import { showModals } from './showModals.js';
 
-//  Login correo y contraseña
-export const logInData = () => {
- //  Mostrar contraseña
-  const logInForm = document.forms.logInForm;
-  const logInInputPassword = logInForm.logInPassword;
-  const logInInputEmail = logInForm.logInButton;
-  const btnLogIn = document.getElementById('logInButton');
-  document.querySelector('.logInPassword_container span').addEventListener('click', e => {showPassword(e, logInInputPassword)});
- //  Validación de correo y contraseña al cambiar input
-  emailPassVal(logInInputEmail, 'correo');
-  emailPassVal(logInInputPassword, 'contraseña');
- //  Submit
-  btnLogIn.addEventListener('click', () => {
-    if (logInInputEmail.value != "" && logInInputPassword.value != ""){
-      logInInputEmail.setCustomValidity("");
-      logInEmailPass(logInInputEmail.value, logInInputPassword.value);
-    } else {
-      infoValidationLogIn(logInInputEmail, logInInputPassword);
-    }
-  });
-};
 
-// Creación de cuenta
-export const signUpData = () => {
-  const formSignUp = document.forms.signUpForm;
-  const signUpInputEmail = formSignUp.signUpEmail;
-  const signUpInputPassword = formSignUp.signUpPassword;
-  const signUpInputPasswordConf = formSignUp.signUpPasswordConfirm;
-  const signUpInName = formSignUp.signUpName;
-  const btnSingUp = document.getElementById('signUpButton');
-  console.log(signUpInputPassword);
-  console.log(signUpInputPasswordConf);
-
- //  Mostrar contraseña
-  document.querySelector('.signUpPassword-container span').addEventListener('click', e => {showPassword(e, signUpInputPassword)});
-  document.querySelector('.signUpPasswordConfirm-container span').addEventListener('click', e => {showPassword(e, signUpInputPasswordConf)});
- //  Validación
-  emailPassVal(signUpInName, 'nombre')
-  emailPassVal(signUpInputEmail, 'correo');
-  emailPassVal(signUpInputPassword, 'contraseña');
-  emailPassVal(signUpInputPasswordConf, 'contraseña');
-  btnSingUp.addEventListener('click', () => {
-    if (signUpInputPassword.value != "" && signUpInputPasswordConf.value != "" && signUpInputEmail.value != "" && signUpInName.value != "") {
-      if (signUpInputPassword.value === signUpInputPasswordConf.value) {
-        createUser(signUpInputEmail.value, signUpInputPassword.value, signUpInName.value);
-      } else {
-        let errorMessageContainer = document.getElementById('error-message_container');
-        let errorMessage = document.getElementById('error-message');
+export const signInResponse = (signUpInputPassword, signUpInputPasswordConf,
+  signUpInputEmail, signUpInName) => {
+  const errorMessageContainer = document.getElementById('error-message_container');
+  const errorMessage = document.getElementById('error-message');
+  if (signUpInputPassword.value !== '' && signUpInputPasswordConf.value !== '' && signUpInputEmail.value !== '' && signUpInName.value !== '') {
+    if (signUpInputPassword.value === signUpInputPasswordConf.value) {
+      const resultCreateUser = createUser(signUpInputEmail.value, signUpInputPassword.value);
+      resultCreateUser.then(() => {
+        const update = upDateUser(resultCreateUser.i.user, {
+          name: signUpInName.value,
+          email: signUpInputEmail.value,
+        });
+        update.then(() => {
+          console.log('Nuevo nombre');
+        }).catch(() => {
+          console.log('No se actualizó');
+        });
+      }).catch((error) => {
         errorMessageContainer.style.visibility = 'visible';
-        errorMessage.textContent = 'Error al confirmar tu contraseña, intenta de nuevo';
-        const showError = () => {
-          setTimeout(function(){errorMessageContainer.style.visibility = 'hidden'}, 3000);
+        if (error.code === 'auth/email-already-in-use') {
+          errorMessage.textContent = 'Oh, oh, este correo ya existe, intenta con otro';
+        } else if (error.code === 'auth/weak-password') {
+          errorMessage.textContent = 'Tu contraseña debe contener al menos 6 caracteres';
+        } else {
+          errorMessage.textContent = error.message;
         }
-        showError();
-        }
+        showError(errorMessageContainer);
+      });
+      resultCreateUser.then(() => {
+        //  Verificación por email
+        const emailVer = emailVerification(resultCreateUser.i.user);
+        emailVer.then(() => {
+          showModals(welcomeMsg);
+          const user = currentUserConf();
+          postData(user.uid, []).then(() => {
+            console.log('listo');
+          }).catch((error) => {
+            console.log(error);
+          });
+        }).catch((error) => {
+          console.log(error);
+          errorMessage.textContent = error.message;
+        });
+      });
     } else {
-      infoValidationSignIn(signUpInName, signUpInputEmail, signUpInputPassword, signUpInputPasswordConf);
-      }
-    });
-  };
-
- //  Mostrar contraseña
-const showPassword = (e, element) => {
-  if (e.target.classList.contains('passwordBtn-show')) {
-    e.target.classList.remove('passwordBtn-show');
-    e.target.classList.add('passwordBtn-hide');
-    element.type = 'text';
+      errorMessageContainer.style.visibility = 'visible';
+      errorMessage.textContent = 'Error al confirmar tu contraseña, intenta de nuevo';
+      showError(errorMessageContainer);
+    }
   } else {
-    console.log(e.target.classList);
-    e.target.classList.remove('passwordBtn-hide');
-    e.target.classList.add('passwordBtn-show');
-    element.type = 'password';
+    infoValidation({
+      emailInput: signUpInputEmail,
+      passwordInput: signUpInputPassword,
+      passwordConf: signUpInputPasswordConf,
+      nameInput: signUpInName,
+    });
   }
 };
 
-//  Salir de la app
-export const signOut = () => {
-  const signOutBtn = document.getElementsByClassName("signOut");
-  console.log(signOutBtn);
-  for (const button of signOutBtn) {
-    console.log(button);
-    button.addEventListener('click', () => {
-      showModals(signOutConfirmation);
-    })
+export const logInResponse = (logInInputEmail, logInInputPassword) => {
+  const errorMessageContainerLogIn = document.getElementById('error-messageLogIn_container');
+  const errorMessageLogIn = document.getElementById('error-messageLogIn');
+  if (logInInputEmail.value !== '' && logInInputPassword.value !== '') {
+    logInInputEmail.setCustomValidity('');
+    logInEmailPass(logInInputEmail.value, logInInputPassword.value)
+      .then((result) => {
+        // Confirmar validación por correo
+        const validationConf = emailVerified(result.user);
+        if (validationConf) {
+          window.location.hash = '#/';
+        } else {
+          showModals(noVerification);
+          signOutFire();
+        }
+      }).catch((error) => {
+        errorMessageContainerLogIn.style.visibility = 'visible';
+        const showErrorTime = () => {
+          setTimeout(() => { errorMessageContainerLogIn.style.visibility = 'hidden'; }, 3000);
+        };
+        if (error.code === 'auth/user-not-found') {
+          errorMessageLogIn.textContent = 'Algo ha salido mal, tu usuario no ha sido encontrado. Verifica tu correo.';
+          showErrorTime();
+        }
+        if (error.code === 'auth/wrong-password') {
+          errorMessageLogIn.textContent = '¡Ups! Contraseña incorrecta. Revísala una vez más.';
+          showErrorTime();
+        }
+      });
+  } else {
+    infoValidation({
+      emailInput: logInInputEmail,
+      passwordInput: logInInputPassword,
+    });
   }
 };

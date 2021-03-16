@@ -21,7 +21,8 @@ export const home = `
   </div>
   <div id="menu-open" class="disable-menu-desplegable">
     <ul>
-    <li id="aboutUs"><a href= "#/aboutUs/">Conócenos</a></li>
+      <li id="aboutUs"><a href= "#/aboutUs/">Conócenos</a></li>
+      <li id="myFavorites"><a href= "#/favoritePost/">Favoritos</a></li>
       <li class="signOut" id="signOut"><a>Salir</a></li>
     </ul>
   </div>
@@ -32,6 +33,10 @@ export const home = `
       </figure>
       <img src="https://user-images.githubusercontent.com/75234502/106777987-1d77dc80-660b-11eb-8d01-191b02855d50.png" alt="ícono-Chop">
       <div class="homeWelcome-modal_msg" id="homeWelcome-modal_msg"></div>
+    </div>
+  </div>
+  <div class="postModal_container" id="postModal_container">
+    <div class= "postModalInfo" id= "postModalInfo">
     </div>
   </div>
 `;
